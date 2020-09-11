@@ -68,9 +68,9 @@ spec:
         imagePullPolicy: Always
         env:
           - name:  FLUENT_EVENTHUB_CONNECTION_STRING
-            value: "<<paste connection string here>>"
+            value: "prreddynamespace.servicebus.windows.net"
           - name:  FLUENT_EVENTHUB_HUB_NAME
-            value: "<<paste event hub name here>>"
+            value: "myeventhub"
         resources:
           limits:
             memory: 200Mi
