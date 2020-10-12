@@ -1,8 +1,38 @@
-## Create a standard sku Eventhub 
-```powershell
-az eventhubs namespace create --name mynamespace --resource-group myresourcegroup --sku
-az eventhubs eventhub create --name myeventhub --resource-group myresourcegroup --namespace-name mynamespace
-
-
+### Step 1: Grant Permissions to Fluentd
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: fluentd
+namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  name: fluentd
+  namespace: kube-system
+rules:
+- apiGroups:
+- ""
+  resources:
+  - pods
+  - namespaces
+  verbs:
+  - get
+  - list
+  - watch
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: fluentd
+roleRef:
+  kind: ClusterRole
+  name: fluentd
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+- kind: ServiceAccount
+  name: fluentd
+  namespace: kube-system
 
 ```
