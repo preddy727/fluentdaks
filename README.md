@@ -36,3 +36,10 @@ subjects:
   namespace: kube-system
 
 ```
+```cli
+kubectl create -f rbac.yml
+serviceaccount “fluentd” created
+clusterrole.rbac.authorization.k8s.io “fluentd” created
+clusterrolebinding.rbac.authorization.k8s.io “fluentd” created
+```
+### Step 2: 
