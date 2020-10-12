@@ -1,4 +1,7 @@
 ### Step 1: Grant Permissions to Fluentd
+
+Save these manifests in the rbac.yml separating them by the ---delimiter and create all resources in bulk. 
+
 ```yaml
 apiVersion: v1
 kind: ServiceAccount
