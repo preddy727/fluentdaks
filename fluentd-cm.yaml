@@ -18,7 +18,7 @@ data:
         pos_file /var/log/fluentd-containers.log.pos
         exclude_path "#{ENV['FLUENT_CONTAINER_TAIL_EXCLUDE_PATH'] || use_default}"
         read_from_head true
-        tag fml.model_logs
+        tag model_logs
         <parse>
             @type json
             time_type string
@@ -26,7 +26,7 @@ data:
         </parse>
     </source>
 
-    <filter fml.model_logs>
+    <filter model_logs>
       @type prometheus
       <metric>
         name fluentd_input_log_count
@@ -40,7 +40,7 @@ data:
       </metric>
     </filter>
 
-    <filter fml.model_logs>
+    <filter model_logs>
         @type parser
         key_name log
         remove_key_name_field true
@@ -49,7 +49,7 @@ data:
         </parse>
     </filter>
 
-    <match fml.model_logs.**>
+    <match model_logs.**>
       @type copy
         <store ignore_error>
             @type azureeventhubs_buffered
@@ -97,7 +97,7 @@ data:
             azure_oauth_secret
             azure_oauth_refresh_interval     3600
             time_slice_format                %Y%m%d_%H%M%S%L
-            path                             "fml_model_logs"
+            path                             "model_logs"
             store_as                         json
             file_extension                   json
             auto_create_container            true
