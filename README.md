@@ -1,48 +1,19 @@
-### Step 1: Grant Permissions to Fluentd
+## Download  attached fluentd-cm.yaml and fluentd-ds.yaml
+kubectl apply -f fluentd-cm.yaml   # please review the changes to make sure all the metrics and configurations in there
+kubectl apply -f fluentd-ds.yaml   # please update with your image name
 
-Save these manifests in the rbac.yml separating them by the ---delimiter and create all resources in bulk. 
+## Troubleshooting steps
 
-```yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: fluentd
-namespace: kube-system
----
-apiVersion: rbac.authorization.k8s.io/v1beta1
-kind: ClusterRole
-metadata:
-  name: fluentd
-  namespace: kube-system
-rules:
-- apiGroups:
-- ""
-  resources:
-  - pods
-  - namespaces
-  verbs:
-  - get
-  - list
-  - watch
----
-kind: ClusterRoleBinding
-apiVersion: rbac.authorization.k8s.io/v1beta1
-metadata:
-  name: fluentd
-roleRef:
-  kind: ClusterRole
-  name: fluentd
-  apiGroup: rbac.authorization.k8s.io
-subjects:
-- kind: ServiceAccount
-  name: fluentd
-  namespace: kube-system
+1.	Exec into fluentd deamonset pod and run the curl command http://<fluentd-pod-ip>:24231/metrics and you should see the prometheus metrics 
+root@fluentd-g9m57:/home/fluent# curl http://10.240.0.20:24231/metrics  # Please use your fluentd pod IP address 
+# TYPE fluentd_input_log_count counter
+# HELP fluentd_input_log_count The total number of incoming records
+fluentd_input_log_count{tag="fml.model_logs",hostname="fluentd-g9m57",worker="0"} 1958.0
+…
 
-```
-```cli
-kubectl create -f rbac.yml
-serviceaccount “fluentd” created
-clusterrole.rbac.authorization.k8s.io “fluentd” created
-clusterrolebinding.rbac.authorization.k8s.io “fluentd” created
-```
-### Step 2: 
+2.	If above step successful, under 5 minutes, you should see  prometheus metrics under InsightsMetricsTable
+
+
+
+ 
+
