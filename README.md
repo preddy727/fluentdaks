@@ -4,6 +4,8 @@ This article describes how to monitor Fluentd via Prometheus.
 Since both Prometheus and Fluentd are under CNCF (Cloud Native Computing Foundation), Fluentd project is recommending to use Prometheus by default to monitor Fluentd.
 https://docs.fluentd.org/monitoring-fluentd/monitoring-prometheus
 
+The configmap and daemonset below are located on this github repo.  
+
 ```bash
 kubectl apply -f fluentd-cm.yaml   # please review the changes to make sure all the metrics and configurations in there
 kubectl apply -f fluentd-ds.yaml   # please update with your image name
