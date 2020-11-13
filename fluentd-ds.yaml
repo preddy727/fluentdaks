@@ -27,7 +27,7 @@ spec:
         effect: NoSchedule
       containers:
       - name: fluentd
-        image: 
+        image: fluent/fluentd-kubernetes-daemonset:v1-debian-elasticsearch
         ports:
           - containerPort: 24231
         env:
