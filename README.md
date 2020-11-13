@@ -16,6 +16,11 @@ kubectl apply -f fluentd-ds.yaml   # please update with your image name
 
 1.	Exec into fluentd deamonset pod and run the curl command http://<fluentd-pod-ip>:24231/metrics and you should see the prometheus metrics 
 ```bash
+    
+kubectl get pods -n kube-system -o wide
+kubectl exec fluentd-k4jrm -it bash -n kube-system
+apt update && sudo apt upgrade
+apt install curl
 
 root@fluentd-g9m57:/home/fluent# curl http://10.240.0.20:24231/metrics  # Please use your fluentd pod IP address 
 
