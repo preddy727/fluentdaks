@@ -18,7 +18,7 @@ fluentd_input_log_count{tag="fml.model_logs",hostname="fluentd-g9m57",worker="0"
 2.	If above step successful, under 5 minutes, you should see  prometheus metrics under InsightsMetricsTable
 
 <p align="center">
-    <a href="http://goreportcard.com/report/github.com/charmbracelet/glow"><img src="http://goreportcard.com/badge/charmbracelet/glow" alt="Prometheus Metrics"></a>
+    <a href="https://github.com/preddy727/fluentdaks/blob/master/prometheusmetrics.png"><img src="https://github.com/preddy727/fluentdaks/blob/master/prometheusmetrics.png" alt="Prometheus Metrics"></a>
 </p>
 
 
