@@ -2,7 +2,7 @@
 ```
 kubectl apply -f fluentd-cm.yaml   # please review the changes to make sure all the metrics and configurations in there
 kubectl apply -f fluentd-ds.yaml   # please update with your image name
-```cli
+```yaml
 ## Troubleshooting steps
 
 1.	Exec into fluentd deamonset pod and run the curl command http://<fluentd-pod-ip>:24231/metrics and you should see the prometheus metrics 
